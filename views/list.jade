@@ -1,0 +1,30 @@
+div
+    h3 #{title}  
+div.content
+ p
+- if(tasks.length)
+    table(border="1")
+        tr
+            th Name
+            th Description
+            th Status
+            th Start Date
+            th Due Date
+            th % Completion         
+                each task in tasks
+                    tr
+                        td #{task.name}
+                        td #{task.description}
+                        td #{task.status}
+                        td #{task.startDate.toDateString()} 
+                        -if(task.dueDate)
+                            td #{task.dueDate.toDateString()} 
+                        -else
+                          td #{task.dueDate}                       
+                        td #{task.completion}                       
+- else
+    p Task list is empty
+p
+p
+    a(href="/tasks/create") Create Task    
+    

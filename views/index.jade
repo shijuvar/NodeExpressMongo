@@ -1,0 +1,35 @@
+div
+    h3 #{title}   
+
+div.content
+ p
+- if(tasks.length)
+    table(border="1")
+        tr
+            th Name
+            th Description
+            th Status
+            th Start Date
+            th Due Date
+            th % Completion
+            th Actions
+                each task in tasks
+                    tr
+                        td #{task.name}
+                        td #{task.description}
+                        td #{task.status}
+                        td #{task.startDate.toDateString()} 
+                        -if(task.dueDate)
+                            td #{task.dueDate.toDateString()} 
+                        -else
+                          td #{task.dueDate}                       
+                        td #{task.completion}
+                        td
+                            a(href ='/tasks/edit/'+ '#{task._id}') Edit |
+                            a(href ='/tasks/delete/' + '#{task._id}') Delete
+- else
+    p Task list is empty
+p
+p
+    a(href="/tasks/add") Create Task    
+    

@@ -1,0 +1,28 @@
+div.content
+    div.row
+        div.span12
+            h2 Add a new Task
+            p 
+              form(name='form-addtask', method='POST', action='/tasks/addTask').form                
+                label Name:
+                input(name='name', type='text', id='name')
+                label Description:
+                input(name='description', type='text', id='description')
+                label Start Date:
+                input(name='startdate', type='text', id='startdate')
+                label Due Date:
+                input(name='duedate', type='text', id='duedate')
+                label Status:
+                select(name='status') 
+                  option(value='Not Started') Not Started 
+                  option(value='In Progress') In Progress
+                  option(value='Completed') Completed                
+                label % Completion:
+                input(name='completion', type='text', id='ompletion', value=0)
+                span.help-block 
+                button(type='submit').btn Submit
+script(type='text/javascript')
+   $(function(){       
+     $('#startdate').datepicker({dateFormat: 'mm/dd/yy'});  
+      $('#duedate').datepicker({dateFormat: 'mm/dd/yy'});   
+   });                  

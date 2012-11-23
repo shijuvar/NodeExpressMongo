@@ -1,0 +1,38 @@
+- var nots = ('Not Started'==task.status) ? 'selected' : null; 
+- var inp = ('In Progress'==task.status) ? 'selected' : null; 
+- var comp = ('Completed'==task.status) ? 'selected' : null; 
+div.content
+    div.row
+        div.span12
+            h2 Edit Task
+            p 
+              form(name='form-edittask', method='POST', action='/tasks/updateTask').form  
+                input(name='id', type='hidden', id='id',value='#{task._id}')              
+                label Name:
+                input(type="text", name="name", id="name",value='#{task.name}' )    
+                label Description:
+                input(name='description', type='text', id='description', value='#{task.description}')
+                label Start Date:
+                -if(task.startDate)
+                 input(name='startdate', type='text', id='startdate', value='#{task.startDate.toDateString()}')
+                -else
+                 input(name='startdate', type='text', id='startdate')
+                label Due Date:
+                -if(task.dueDate)
+                 input(name='duedate', type='text', id='duedate', value='#{task.dueDate.toDateString()}')
+                -else
+                 input(name='dueDate', type='text', id='dueDate')
+                label Status:
+                select(name='status') 
+                 option(value='Not Started', selected=nots) Not Started 
+                 option(value='In Progress', selected=inp) In Progress
+                 option(value='Completed', selected=comp) Completed       
+                label % Completion:
+                input(name='completion', type='text', id='ompletion', value='#{task.completion}')            
+                span.help-block 
+                button(type='submit').btn Submit
+script(type='text/javascript')
+   $(function(){       
+     $('#startdate').datepicker({dateFormat: 'mm/dd/yy'});  
+      $('#duedate').datepicker({dateFormat: 'mm/dd/yy'});   
+   });                  
