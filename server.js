@@ -31,7 +31,7 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
+// setup routes
 routes.setup({
     'controllers': controllers,
     'app': app
